@@ -1,0 +1,42 @@
+@use '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@use 'variables';
+@use 'components';
+
+html, body {
+    background-color:variables.$theme-primary-color;
+}
+
+html {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    
+    h1, h2, h3, h4, h5, h6 {
+        text-transform: uppercase;
+        font-weight:700;
+    }
+
+    h1 {
+        font-size: clamp(3.5rem, 10vw, 10rem);
+        
+    }
+
+    p {
+        font-size: clamp(1rem, 1.5vw, 1.5rem);
+    }
+
+    ul {
+        list-style: none;
+    }
+
+}
+
+//V/H centered container
+.center-container {
+    @extend .d-flex;
+    @extend .flex-column;
+    @extend .justify-content-center;
+    @extend .align-items-center;
+    @extend .text-center;
+}
