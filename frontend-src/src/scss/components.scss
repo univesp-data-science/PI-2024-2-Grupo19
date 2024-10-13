@@ -1,0 +1,44 @@
+@use 'variables';
+
+small, .small {
+    font-size:0.75em;
+}
+
+ul, li {
+    padding: 0;
+}
+
+form {
+    input[type="email"],
+    input[type="text"],
+    input[type="number"],
+    input[type="tel"],
+    select,
+    textarea {
+        border-radius: 10px;
+        background-color: rgba(variables.$theme-secondary-color,10%) !important; 
+    }
+
+    &.footer-form {
+        input[type="email"],
+        input[type="text"] {
+            margin-top:4px;
+            padding:10px 0 8px 20px;
+            background-color:rgba(255,255,255,.1) !important;
+            border-color:rgba(255,255,255,.1) !important;
+
+            
+        }
+
+        ::placeholder {
+            text-transform: uppercase;
+            color: rgba(var(--bs-light-rgb), .3);
+            opacity: 1; /* Firefox */
+        }
+          
+        ::-ms-input-placeholder { /* Edge 12 -18 */
+            text-transform: uppercase;
+            color: rgba(var(--bs-light-rgb), .3);
+        }
+    }
+}
