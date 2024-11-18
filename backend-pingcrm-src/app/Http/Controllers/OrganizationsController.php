@@ -67,6 +67,7 @@ class OrganizationsController extends Controller
                 'region' => $organization->region,
                 'country' => $organization->country,
                 'postal_code' => $organization->postal_code,
+                'meta_data' => $organization->meta_data,
                 'deleted_at' => $organization->deleted_at,
                 'contacts' => $organization->contacts()->orderByName()->get()->map->only('id', 'name', 'city', 'phone'),
             ],
@@ -85,6 +86,7 @@ class OrganizationsController extends Controller
                 'region' => ['nullable', 'max:50'],
                 'country' => ['nullable', 'max:2'],
                 'postal_code' => ['nullable', 'max:25'],
+                'meta_data' => ['nullable', 'json'],
             ])
         );
 
