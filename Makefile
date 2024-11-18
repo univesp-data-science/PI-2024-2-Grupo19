@@ -1,7 +1,9 @@
 .PHONY: build start stop restart shell
 
 IMAGE_NAME=docker-pi-2024-g19
-PROJECT_NAME=volunteer-manager
+PROJECT_NAME=univesp-420315
+SERVICE_NAME=pi-2024-2-grupo19
+SERVICE_REGION=us-central1
 PORT=80
 container=$(docker ps -a -q --filter ancestor=${IMAGE_NAME} --format="{{.ID}}")
 
@@ -33,4 +35,7 @@ push-gcp:
 	docker tag ${IMAGE_NAME} gcr.io/${PROJECT_NAME}/${IMAGE_NAME}
 	docker push gcr.io/${PROJECT_NAME}/${IMAGE_NAME}
 
-##gcloud run services update custom-form-tool --image=gcr.io/bradesco-eventos/docker-custom-form-tool:latest --region=us-central1
+update-gcp:
+	gcloud run services update ${SERVICE_NAME} --image=gcr.io/${PROJECT_NAME}/${IMAGE_NAME}:latest --region=${SERVICE_REGION}
+
+##gcloud run services update pi-2024-2-grupo19 --image=gcr.io/bradesco-eventos/docker-custom-form-tool:latest --region=us-central1

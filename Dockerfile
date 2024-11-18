@@ -12,7 +12,8 @@ RUN apk add --no-cache \
         libpng-dev \
         libwebp-dev \
         freetype-dev \
-        ffmpeg
+        ffmpeg \
+        redis
 
 RUN docker-php-ext-configure gd --with-jpeg --with-webp --with-freetype
 RUN docker-php-ext-install gd
@@ -42,7 +43,7 @@ COPY docker/uploads.ini /usr/local/etc/php/conf.d/uploads.ini
 #Copy Application
 RUN mkdir -p /app
 COPY . /app
-COPY ./backend-src /app
+COPY ./backend-pingcrm-src /app
 
 #Install Composer and Project dependencies
 RUN sh -c "wget http://getcomposer.org/composer.phar && chmod a+x composer.phar && mv composer.phar /usr/local/bin/composer"
@@ -53,5 +54,5 @@ RUN mv /app/.env.docker /app/.env
 
 RUN chown -R www-data: /app
 
-#Start Server
-CMD sh /app/docker/startup.sh
+#Start Redis and Server
+CMD redis-server --daemonize yes && sh /app/docker/startup.sh
