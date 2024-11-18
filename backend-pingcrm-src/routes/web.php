@@ -93,7 +93,7 @@ Route::post('organizations', [OrganizationsController::class, 'store'])
     ->name('organizations.store')
     ->middleware('auth');
 
-Route::get('organizations/{organization}/edit', [OrganizationsController::class, 'edit'])
+Route::get('organizations/{organization}/editorg', [OrganizationsController::class, 'edit'])
     ->name('organizations.edit')
     ->middleware('auth');
 
@@ -148,12 +148,20 @@ Route::get('reports', [ReportsController::class, 'index'])
 // Positions
 
 Route::get('positions', [PositionsController::class, 'index'])
-->name('positions')
-->middleware('auth');
+    ->name('positions')
+    ->middleware('auth');
+
+Route::get('positions-create', [PositionsController::class, 'create'])
+    ->name('positions-create')
+    ->middleware('auth');
+
+Route::get('positions-edit', [PositionsController::class, 'edit'])
+    ->name('positions-edit')
+    ->middleware('auth');
 
 Route::get('positions/applied', [PositionsController::class, 'applied'])
-->name('positions-applied')
-->middleware('auth');
+    ->name('positions-applied')
+    ->middleware('auth');
 
 // Images
 

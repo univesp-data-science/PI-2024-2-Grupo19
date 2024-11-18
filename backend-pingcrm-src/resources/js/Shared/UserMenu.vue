@@ -2,26 +2,26 @@
   <div>
     <div class="mb-4">
       <Link id="home" class="group flex items-center py-3" href="/">
-        <fa-icon name="house-solid" class="mr-2 w-4 h-4" :class="isUrl('') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Página Inicial</div>
+        <fa-icon name="house-solid" class="mr-2 w-4 h-4" :class="isSection('home') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isSection('home') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Página Inicial</div>
       </Link>
     </div>
     <div class="mb-4">
       <Link id="user-edit" class="group flex items-center py-3" :href="`/users/${user.id}/edit/`">
-        <fa-icon name="user-gear-solid" class="mr-2 w-4 h-4" :class="isUrl('edit') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('organizations') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Meus Dados</div>
+        <fa-icon name="user-gear-solid" class="mr-2 w-4 h-4" :class="isSection('edit') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isSection('edit') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Meus Dados</div>
       </Link>
     </div>
     <div class="mb-4">
       <Link id="positions" class="group flex items-center py-3" href="/positions">
-        <fa-icon name="bookmark-solid" class="mr-2 w-4 h-4" :class="isUrl('positions') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('positions') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Vagas Disponíveis</div>
+        <fa-icon name="bookmark-solid" class="mr-2 w-4 h-4" :class="isSection('positions') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isSection('positions') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Vagas Disponíveis</div>
       </Link>
     </div>
     <div class="mb-4">
       <Link id="positions-applied" class="group flex items-center py-3" href="/positions/applied">
-        <fa-icon name="bookmark-solid" class="mr-2 w-4 h-4" :class="isUrl('reports') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
-        <div :class="isUrl('reports') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Minhas Inscrições</div>
+        <fa-icon name="bookmark-solid" class="mr-2 w-4 h-4" :class="isSection('applied') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
+        <div :class="isSection('applied') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Minhas Inscrições</div>
       </Link>
     </div>
   </div>
@@ -33,19 +33,40 @@ import Icon from '@/Shared/Icon.vue'
 import FaIcon from '@/Shared/FaIcon.vue'
 
 export default {
+  computed: {
+    lastURLSegment() {
+      const urlPath = window.location.pathname;
+
+      if(urlPath == '/')
+        return 'home';
+
+      return urlPath.split("/").filter(Boolean).pop();
+    },
+  },
   components: {
     Icon,
     FaIcon,
     Link,
   },
+  mounted() {
+    this.initComponent();
+  },
   methods: {
-    isUrl(...urls) {
-      console.log(this.$page.url);
-      let currentUrl = this.$page.url.substr(1)
-      if (urls[0] === '') {
-        return currentUrl === ''
+    initComponent(){
+      //const activeLink = document.getElementById("home");
+      ///activeLink.classList.add("active");
+    },
+    isSection(section) {
+      const urlPath = this.$page.url;
+      let curSection;
+
+      if(urlPath == '/'){
+        curSection = 'home';
+      } else {
+        curSection = urlPath.split("/").filter(Boolean).pop();
       }
-      return urls.filter((url) => currentUrl.startsWith(url)).length
+
+      return curSection == section;
     },
   },
   props: {

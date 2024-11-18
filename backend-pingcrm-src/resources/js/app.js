@@ -7,7 +7,7 @@ createInertiaApp({
     const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
     return pages[`./Pages/${name}.vue`]
   },
-  title: title => title ? `${title} - SVG` : 'SVG',
+  title: title => title ? `${title} | SGV - Sistema de Gestão de Voluntários` : 'SGV - Sistema de Gestão de Voluntários',
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)

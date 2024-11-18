@@ -4,7 +4,7 @@
     <div class="md:flex md:flex-col">
       <div class="md:flex md:flex-col md:h-screen">
         <div class="md:flex md:shrink-0">
-          <div class="flex items-center justify-between px-6 py-4 bg-indigo-900 md:shrink-0 md:justify-center md:w-56">
+          <div class="flex items-center justify-between px-6 py-4 bg-indigo-900 md:shrink-0 md:justify-center md:w-80">
             <Link class="mt-1" href="/">
               <logo class="fill-white" width="120" height="28" />
             </Link>
@@ -43,8 +43,8 @@
           </div>
         </div>
         <div class="md:flex md:grow md:overflow-hidden">
-          <user-menu v-if="auth.user.owner == 0" :user="auth.user" class="hidden shrink-0 p-12 w-56 bg-indigo-800 overflow-y-auto md:block" />
-          <ong-menu v-if="auth.user.owner == 1" :user="auth.user" class="hidden shrink-0 p-12 w-56 bg-indigo-800 overflow-y-auto md:block" />
+          <user-menu v-if="auth.user.owner == 0" :user="auth.user" class="hidden shrink-0 p-12 w-80 bg-indigo-800 overflow-y-auto md:block" />
+          <ong-menu v-if="auth.user.owner == 1" :user="auth.user" class="hidden shrink-0 p-12 w-80 bg-indigo-800 overflow-y-auto md:block" />
           <div class="px-4 py-8 md:flex-1 md:p-12 md:overflow-y-auto" scroll-region>
             <flash-messages />
             <slot />
