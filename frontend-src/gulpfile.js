@@ -15,7 +15,6 @@ gulp.task(
 		return gulp.src([
 				'node_modules/jquery/dist/jquery.js',
                 //'node_modules/bootstrap/dist/js/bootstrap.bundle.js',
-				//'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
 				'src/js/*.js'
 			])
 			.pipe(concat('main.js'))
