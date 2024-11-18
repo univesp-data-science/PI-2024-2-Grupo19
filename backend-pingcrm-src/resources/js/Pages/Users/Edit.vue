@@ -50,11 +50,11 @@
 
         <div class="flex flex-wrap -mb-8 -mr-6 p-8">
           <label for="user-bio" class="w-full pb-8"><strong>Descrição:</strong></label>
-          <textarea-input v-model="userMetaData.bio" class="pb-8 pr-6 w-full" id="user-bio" rows="10">Leleleo</textarea-input>
+          <textarea-input v-model="userMetaData.bio" class="pb-8 pr-6 w-full" id="user-bio" rows="10"></textarea-input>
         </div>
 
         <div class="flex items-center px-8 py-4 bg-gray-50 border-t border-gray-100">
-          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Update User</loading-button>
+          <loading-button :loading="form.processing" class="btn-indigo ml-auto" type="submit">Atualizar Cadastro</loading-button>
         </div>
       </form>
     </div>

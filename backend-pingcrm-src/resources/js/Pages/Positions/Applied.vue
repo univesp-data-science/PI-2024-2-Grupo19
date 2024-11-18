@@ -1,20 +1,67 @@
 <template>
-    <div>
-      <Head title="Vagas aplicadas" />
-      <h1 class="mb-8 text-3xl font-bold">Vagas Aplicadas</h1>
-      <p>Hello, moto applied!</p>
+  <div>
+    <Head title="Vagas Disponíveis" />
+    <h1 class="mb-8 text-3xl font-bold">Vagas Ativas</h1>
+    <div class="mt-6 bg-white rounded shadow overflow-x-auto">
+      <table class="w-full whitespace-nowrap">
+        <tr class="text-left font-bold">
+          <th class="pb-4 pt-6 px-6">Nome</th>
+          <th class="pb-4 pt-6 px-6 text-center">ONG</th>
+          <th class="pb-4 pt-6 px-6 text-center">Data da Atividade</th>
+          <th class="pb-4 pt-6 px-6 text-center">Status</th>
+        </tr>
+        <tr v-for="position in positions" :key="position.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
+          <td class="border-t">
+            <p class="flex items-center px-6 py-4 focus:text-indigo-500">
+              {{ position.name }}
+            </p>
+          </td>
+          <td class="border-t text-center">
+            <p class="px-6 py-4 text-center">ONG Azul</p>
+          </td>
+          <td class="border-t text-center">
+            <p class="px-6 py-4 text-center">
+              {{ position.date_from }}
+            </p>
+          </td>
+          <td class="border-t text-center">
+            <button class="text-white bg-green-600 py-2 px-4 ml-2 rounded">Aceito</button>
+          </td>
+        </tr>
+        <tr v-if="positions.length === 0">
+          <td class="px-6 py-4 border-t" colspan="4">Não há vagas disponíveis</td>
+        </tr>
+      </table>
     </div>
-  </template>
-  
-  <script>
-  import { Head } from '@inertiajs/vue3'
-  import Layout from '@/Shared/Layout.vue'
-  
-  export default {
-    components: {
-      Head,
-    },
-    layout: Layout,
-  }
-  </script>
-  
+  </div>
+</template>
+
+<script>
+import { Head, Link } from '@inertiajs/vue3'
+import Icon from '@/Shared/Icon.vue'
+import Layout from '@/Shared/Layout.vue'
+
+export default {
+  components: {
+    Head,
+    Icon,
+    Link,
+  },
+  props: {
+    filters: Object,
+    positions: Array,
+  },
+  layout: Layout,
+  mounted() {
+    console.log(this.positions);
+  },
+  data() {
+    return {
+      form: {
+        search: this.filters.search,
+        trashed: this.filters.trashed,
+      },
+    }
+  },
+}
+</script>

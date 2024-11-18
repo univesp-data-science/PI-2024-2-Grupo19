@@ -55,6 +55,10 @@ Route::get('users', [UsersController::class, 'index'])
     ->name('users')
     ->middleware('auth');
 
+Route::get('users/positions', [UsersController::class, 'positions'])
+    ->name('users-positions')
+    ->middleware('auth');
+
 Route::get('users/create', [UsersController::class, 'create'])
     ->name('users.create')
     ->middleware('auth');
@@ -151,12 +155,20 @@ Route::get('positions', [PositionsController::class, 'index'])
     ->name('positions')
     ->middleware('auth');
 
+Route::post('positions', [PositionsController::class, 'store'])
+    ->name('positions.store')
+    ->middleware('auth');
+
 Route::get('positions-create', [PositionsController::class, 'create'])
     ->name('positions-create')
     ->middleware('auth');
 
 Route::get('positions-edit', [PositionsController::class, 'edit'])
     ->name('positions-edit')
+    ->middleware('auth');
+
+Route::get('positions-select', [PositionsController::class, 'select'])
+    ->name('positions-select')
     ->middleware('auth');
 
 Route::get('positions/applied', [PositionsController::class, 'applied'])

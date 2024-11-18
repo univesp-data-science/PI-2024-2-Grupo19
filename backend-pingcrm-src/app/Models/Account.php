@@ -21,4 +21,9 @@ class Account extends Model
     {
         return $this->hasMany(Contact::class);
     }
+
+    public function positions(): HasMany
+    {
+        return $this->hasMany(ONG\Positions::class);
+    }
 }

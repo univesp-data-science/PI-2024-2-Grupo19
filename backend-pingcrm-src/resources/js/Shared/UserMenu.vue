@@ -13,7 +13,7 @@
       </Link>
     </div>
     <div class="mb-4">
-      <Link id="positions" class="group flex items-center py-3" href="/positions">
+      <Link id="positions" class="group flex items-center py-3" href="/users/positions">
         <fa-icon name="bookmark-solid" class="mr-2 w-4 h-4" :class="isSection('positions') ? 'fill-white' : 'fill-indigo-400 group-hover:fill-white'" />
         <div :class="isSection('positions') ? 'text-white' : 'text-indigo-300 group-hover:text-white'">Vagas Disponíveis</div>
       </Link>

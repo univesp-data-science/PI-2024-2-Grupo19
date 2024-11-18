@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\ONG\Positions;
+
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -31,6 +33,15 @@ class UsersController extends Controller
                     'photo' => $user->photo_path ? URL::route('image', ['path' => $user->photo_path, 'w' => 40, 'h' => 40, 'fit' => 'crop']) : null,
                     'deleted_at' => $user->deleted_at,
                 ]),
+        ]);
+    }
+
+    public function positions(): Response
+    {
+        return Inertia::render('Users/Positions', [
+            'filters' => Request::all('search', 'trashed'),
+            'positions' => Positions::orderByName()
+                ->get()
         ]);
     }
 
